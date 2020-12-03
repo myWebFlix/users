@@ -13,7 +13,7 @@ spec:
         app: users
     spec:
       containers:
-        - image: webflix/users:2020-12-03-09-17-22
+        - image: webflix/users:2020-12-03-22-46-44
           name: users
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
