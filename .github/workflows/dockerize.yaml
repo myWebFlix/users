@@ -44,4 +44,4 @@ jobs:
           file: ./Dockerfile
           context: .
           push: true
-          tags: webflix/video-stream:${{ steps.time.outputs.time }}
+          tags: webflix/users:${{ steps.time.outputs.time }}
