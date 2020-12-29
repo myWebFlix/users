@@ -4,9 +4,9 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8080
+    base-url: http://localhost:8090
     http:
-      port: 8080
+      port: 8090
   datasources:
     - jndi-name: jdbc/WebflixDS
       connection-url: jdbc:postgresql://localhost:5432/webflix

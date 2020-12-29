@@ -17,8 +17,14 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name = "google_user_id", unique = true)
+	private String google_user_id;
+
 	@Column(name = "user_name")
 	private String user_name;
+
+	@Column(name = "user_email")
+	private String user_email;
 
 	@Column(name = "user_age")
 	private Integer user_age;
@@ -45,5 +51,21 @@ public class UserEntity {
 
 	public void setUser_age(Integer user_age) {
 		this.user_age = user_age;
+	}
+
+	public String getGoogle_user_id() {
+		return google_user_id;
+	}
+
+	public void setGoogle_user_id(String google_user_id) {
+		this.google_user_id = google_user_id;
+	}
+
+	public String getUser_email() {
+		return user_email;
+	}
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 }
