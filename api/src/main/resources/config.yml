@@ -4,9 +4,9 @@ kumuluzee:
     name: dev
   version: 1.0.0
   server:
-    base-url: http://localhost:8090
+    base-url: http://localhost:8080
     http:
-      port: 8090
+      port: 8080
   datasources:
     - jndi-name: jdbc/WebflixDS
       connection-url: jdbc:postgresql://localhost:5432/video-metadata #webflix
@@ -37,3 +37,5 @@ kumuluzee:
 #rest-config:
 #  maintenance-mode: false
 #  broken: false
+app-config:
+  google-client-id:

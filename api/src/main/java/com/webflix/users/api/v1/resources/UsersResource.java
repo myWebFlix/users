@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
-@Path("/user")
+@Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsersResource {
@@ -20,7 +20,7 @@ public class UsersResource {
 	private UserDataBean userDataBean;
 
 	@GET
-	@Path("/all")
+	@Path("/users")
 	public Response getUsers() {
 		List<UserEntity> list = userDataBean.getUsersRawData();
 		System.out.println("get users");
@@ -28,6 +28,7 @@ public class UsersResource {
 	}
 
 	@GET
+	@Path("/auth")
 	public Response getUser(@HeaderParam("ID-Token") String idTokenString) {
 		Integer userId = userDataBean.manageUser(idTokenString);
 
