@@ -62,6 +62,7 @@ public class UserDataBean {
 				userEntity = new UserEntity();
 				userEntity.setGoogle_user_id(googleUserId);
 				userEntity.setUser_name(userName);
+				userEntity.setUser_email(email);
 
 				beginTx();
 				em.persist(userEntity);
