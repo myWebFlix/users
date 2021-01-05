@@ -7,9 +7,12 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.kumuluz.ee.configuration.cdi.ConfigValue;
 import com.webflix.users.models.entities.UserEntity;
+import com.webflix.users.services.config.AppConfig;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -18,6 +21,8 @@ import java.util.List;
 
 @RequestScoped
 public class UserDataBean {
+	@Inject
+	private AppConfig appConfig;
 
 	@PersistenceContext(unitName = "webflix-jpa")
 	private EntityManager em;
@@ -25,7 +30,11 @@ public class UserDataBean {
 	public Integer manageUser(String idTokenString) {
 
 		//String CLIENT_ID = "304157826665-k1nt1phqk7qgsgk5m2hh6hlfkof6g5oe.apps.googleusercontent.com";
-		String CLIENT_ID = "321634089538-fge6kl40hqtie38r6issu5fidnmdiosa.apps.googleusercontent.com";
+		//String CLIENT_ID = "321634089538-fge6kl40hqtie38r6issu5fidnmdiosa.apps.googleusercontent.com";
+
+		String CLIENT_ID = appConfig.getGoogleClientID();
+
+		System.out.println(CLIENT_ID);
 
 		HttpTransport transport = new NetHttpTransport();
 		JsonFactory jsonFactory = new JacksonFactory();

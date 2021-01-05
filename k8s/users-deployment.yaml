@@ -16,6 +16,11 @@ spec:
         - image: webflix/users:2020-12-04-00-41-00
           name: users
           env:
+            - name: APPCONFIG_GOOGLECLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: google-api
+                  key: client_id
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
               valueFrom:
                 secretKeyRef:
