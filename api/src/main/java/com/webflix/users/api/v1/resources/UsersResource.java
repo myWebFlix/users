@@ -2,6 +2,7 @@ package com.webflix.users.api.v1.resources;
 
 import com.webflix.users.models.entities.UserEntity;
 import com.webflix.users.services.beans.UserDataBean;
+import com.webflix.users.services.config.RestConfig;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -19,6 +20,9 @@ public class UsersResource {
 	@Inject
 	private UserDataBean userDataBean;
 
+	@Inject
+	private RestConfig restConfig;
+
 	@GET
 	@Path("/users")
 	public Response getUsers() {
@@ -28,22 +32,36 @@ public class UsersResource {
 	}
 
 	@GET
+	@Path("/users/{userId}")
+	public Response getUser(@PathParam("userId") Integer userId) {
+
+		//UserEntity ue userDataBean.getUser();
+
+		return Response.ok().build();
+	}
+
+	@GET
 	@Path("/auth")
-	public Response getUser(@HeaderParam("ID-Token") String idTokenString) {
-		Integer userId = userDataBean.manageUser(idTokenString);
-
-		if (userId != null) {
-
-			//UserEntity user = userDataBean.getUsersRawData();
-
-			System.out.println("User ID: " + userId);
-
-			return Response.ok(userId).build();
-
+	public Response loginUser(@HeaderParam("ID-Token") String idTokenString) {
+		if (restConfig.isDisableLogin()) {
+			return Response.status(Response.Status.SERVICE_UNAVAILABLE).build();
 		} else {
 
-			return Response.status(Response.Status.UNAUTHORIZED).build();
+			Integer userId = userDataBean.manageUser(idTokenString);
 
+			if (userId != null) {
+
+				//UserEntity user = userDataBean.getUsersRawData();
+
+				System.out.println("User ID: " + userId);
+
+				return Response.ok(userId).build();
+
+			} else {
+
+				return Response.status(Response.Status.UNAUTHORIZED).build();
+
+			}
 		}
 	}
 

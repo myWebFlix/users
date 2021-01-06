@@ -13,7 +13,7 @@ spec:
         app: users
     spec:
       containers:
-        - image: webflix/users:2021-01-06-04-28-27
+        - image: webflix/users:2021-01-06-04-39-51
           name: users
           env:
             - name: APPCONFIG_GOOGLECLIENTID
