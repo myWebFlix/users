@@ -9,7 +9,7 @@ kumuluzee:
       port: 8080
   datasources:
     - jndi-name: jdbc/WebflixDS
-      connection-url: jdbc:postgresql://localhost:5432/video-metadata #webflix
+      connection-url: jdbc:postgresql://localhost:5432/webflix
       username: postgres
       password: postgres
       max-pool-size: 20
@@ -17,7 +17,7 @@ kumuluzee:
     start-retry-delay-ms: 500
     max-retry-delay-ms: 900000
     etcd:
-      hosts: http://localhost:2379 # http://localhost:2379 #,http://192.168.99.101:2379,http://192.168.99.102:2379
+      hosts: http://etcd:2379 # http://localhost:2379 #,http://192.168.99.101:2379,http://192.168.99.102:2379
   health:
     checks:
       data-source-health-check:
