@@ -16,6 +16,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.NotFoundException;
 import java.util.Collections;
 import java.util.List;
 
@@ -90,11 +91,21 @@ public class UserDataBean {
 		}
 	}
 
-	public List<UserEntity> getUsersRawData(){
+	public List<UserEntity> getUsers(){
 
 		TypedQuery<UserEntity> query = em.createNamedQuery("UserEntity.getAll", UserEntity.class);
 
 		return query.getResultList();
+	}
+
+	public UserEntity getUser(Integer userId) {
+		UserEntity ue = em.find(UserEntity.class, userId);
+
+//		if (ue == null) {
+//			throw new NotFoundException();
+//		}
+
+		return ue;
 	}
 
 	// Transactions

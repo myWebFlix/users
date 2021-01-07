@@ -26,7 +26,7 @@ public class UsersResource {
 	@GET
 	@Path("/users")
 	public Response getUsers() {
-		List<UserEntity> list = userDataBean.getUsersRawData();
+		List<UserEntity> list = userDataBean.getUsers();
 		System.out.println("get users");
 		return Response.ok(list).build();
 	}
@@ -35,9 +35,12 @@ public class UsersResource {
 	@Path("/users/{userId}")
 	public Response getUser(@PathParam("userId") Integer userId) {
 
-		//UserEntity ue userDataBean.getUser();
-
-		return Response.ok().build();
+		UserEntity ue = userDataBean.getUser(userId);
+		if (ue == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		} else {
+			return Response.ok(ue).build();
+		}
 	}
 
 	@GET
